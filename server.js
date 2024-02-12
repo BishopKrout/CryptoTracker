@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -6,7 +6,9 @@ const pool = require('./server/config/db');
 const authRoutes = require('./server/routes/authRoutes');
 const cryptoRoutes = require('./server/routes/cryptoRoutes');
 const userRoutes = require('./server/routes/userRoutes');
-const dashboardRoutes = require('./server/routes/dashboardRoutes');
+// const dashboardRoutes = require('./server/routes/dashboardRoutes');
+// const transactionRoutes = require('./server/routes/transactionRoutes');
+// const db = require('./config/db'); 
 
 const app = express();
 
@@ -24,7 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/crypto', cryptoRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/dashboard', dashboardRoutes);
+// app.use('/api/dashboard', dashboardRoutes);
+// app.use('/api/transaction', transactionRoutes);
 
 
 const PORT = process.env.PORT || 3000;

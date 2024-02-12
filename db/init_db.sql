@@ -42,4 +42,14 @@ CREATE TABLE market_data (
     volume DECIMAL(19, 4)
 );
 
+CREATE TABLE portfolio (
+    portfolio_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
+    crypto_id INT REFERENCES cryptocurrencies(crypto_id),
+    quantity DECIMAL(19, 4) NOT NULL,
+    average_cost DECIMAL(19, 4) NOT NULL,
+    current_value DECIMAL(19, 4) NOT NULL,
+    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Directly run this script against PSQL instance for CryptoTracker DB.
