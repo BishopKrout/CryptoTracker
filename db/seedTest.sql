@@ -1,7 +1,7 @@
 -- Filename: db/seedTest.sql
 
 -- Clear existing data from all tables
-TRUNCATE TABLE users, cryptocurrencies, market_data, portfolio, transactions RESTART IDENTITY CASCADE;
+TRUNCATE TABLE users, cryptocurrencies, market_data, portfolio, RESTART IDENTITY CASCADE;
 
 -- Insert test data into the 'users' table
 INSERT INTO users (username, email, password_hash, date_joined) 
@@ -29,9 +29,3 @@ VALUES
 (1, 1, 1.5, 45000, 67500, NOW()),
 (1, 2, 10, 3000, 30000, NOW());
 
--- Insert test data into the 'transactions' table
--- Note: Ensure user_id and crypto_id match the IDs from the inserted users and cryptocurrencies
-INSERT INTO transactions (user_id, crypto_id, quantity, transaction_type, transaction_date)
-VALUES
-(1, 1, 1.5, 'BUY', NOW() - INTERVAL '1 day'),
-(1, 2, 10, 'BUY', NOW() - INTERVAL '1 day');

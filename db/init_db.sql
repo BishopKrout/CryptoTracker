@@ -1,6 +1,6 @@
 
 -- Use this script to initialize the DB schema.
--- Includes creation of users, cryptos, transactions, and market data
+-- Includes creation of users, cryptos, and market data
 
 -- Users: stores user creds and join date
 CREATE TABLE users (
@@ -20,15 +20,6 @@ CREATE TABLE cryptocurrencies (
     current_price DECIMAL(19, 4)
 );
 
--- Transactions: Track buy/sell activities for each user. 
-CREATE TABLE transactions (
-    transactions_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
-    crypto_id INT REFERENCES cryptocurrencies(crypto_id),
-    quantity DECIMAL(19, 4) NOT NULL,
-    transaction_type VARCHAR(4) CHECK(transaction_type IN ('BUY', 'SELL')),
-    transaction_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
-);
 
 -- Market Data: Historical price data for cryptos.
 CREATE TABLE market_data (
@@ -40,16 +31,6 @@ CREATE TABLE market_data (
     high DECIMAL(19, 4),
     low DECIMAL(19, 4),
     volume DECIMAL(19, 4)
-);
-
-CREATE TABLE portfolio (
-    portfolio_id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES users(user_id),
-    crypto_id INT REFERENCES cryptocurrencies(crypto_id),
-    quantity DECIMAL(19, 4) NOT NULL,
-    average_cost DECIMAL(19, 4) NOT NULL,
-    current_value DECIMAL(19, 4) NOT NULL,
-    last_updated TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Directly run this script against PSQL instance for CryptoTracker DB.
